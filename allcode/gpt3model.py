@@ -3,8 +3,11 @@ import pickle
 import requests
 import openai
 import json 
+from dotenv import load_dotenv, find_dotenv
 
-openai.api_key = "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"
+load_dotenv("D:\\fixedJohnOliver\.env")
+
+openai.api_key = os.getenv('OPENAITOKEN')
 #uploadedfilejson = openai.File.create(file=open("nba_prepared.jsonl", encoding="utf8", errors="ignore"), purpose='fine-tune')
 
 #finetunemodel = openai.FineTune.create(training_file=uploadedfilejson.get("id"), model = "davinci", n_epochs = 10)
@@ -18,4 +21,4 @@ openai.api_key = "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"
 #NEW MODEL openai api completions.create -m ada:ft-thegoats-2022-01-07-03-13-15 -p <YOUR_PROMPT>
 #NEW MODEL 
 prompt = "Stephen Curry"
-print(prompt + openai.Completion.create(model="ada:ft-thegoats-2022-01-07-03-13-15", prompt=prompt, max_tokens=15).get("choices")[0].get("text"))
+print((prompt + openai.Completion.create(model="ada:ft-thegoats-2022-01-07-03-13-15", prompt=prompt, max_tokens=15).get("choices")[0].get("text").replace("->", "")))

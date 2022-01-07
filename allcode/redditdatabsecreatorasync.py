@@ -3,7 +3,10 @@ import asyncpraw
 import pandas as pd
 import openai
 import asyncio
+import os
+from dotenv import load_dotenv, find_dotenv
 
+load_dotenv("D:\\fixedJohnOliver\.env")
 # set pandas viewing options
 pd.set_option("display.max_columns", None)
 pd.set_option('display.width', None)
@@ -11,11 +14,11 @@ pd.set_option("max_colwidth", None)
 #pd.reset_option("max_colwidth")
 
 reddit = asyncpraw.Reddit(
-    client_id="mCsA5jOs0TOgWdVYnYm93g",
-    client_secret="Wl7wE88pqGP1q_kWtRHci5Rr380zWQ",
-    user_agent="web:JohnOliverBot:0.0.1 (by /u/_Steelcrawlwr)",
-    username="_Steelcrawlwr",
-    password="NSIRC123",
+    client_id=os.getenv("REDDITCLIENTID"),
+    client_secret=os.getenv("REDDITCLIENTSECRET"),
+    user_agent=os.getenv("REDDITUSERAGENT"),
+    username=os.getenv("REDDITUSERNAME"),
+    password=os.getenv("REDDITPASSWORD"),
 )   
 
 df = pd.DataFrame(columns = ['text', 'response'])

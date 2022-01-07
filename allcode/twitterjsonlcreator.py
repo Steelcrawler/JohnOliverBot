@@ -1,13 +1,12 @@
-consumer_key = "MpM1ALIsBtZb0iQtbLiFyoHMz"
-consumer_secret = "cUnNC3vXj8erKQ0Vo900CnNnhj9FW95aPX3xvXtgZZsgSsuP03"
-access_token = "1098331938006290432-IDgC0W39hf16f28ExmvxL1mSUCODwt"
-access_token_secret = "Ou2mN8M0GFFajIOPdeBsV0EXKddiXomLaFwhx5sqfn7S1"
-bearer_token = "AAAAAAAAAAAAAAAAAAAAAADLXgEAAAAAUhe62zaVp6Ky%2FgQrUZ79%2FTPaHp8%3DwwEHRtXBJviv9dJuD4cxyWAigPQHAxokMTBM0PTqVL4MsitzS1"
 import tweepy
 import json
 import jsonlines
 import re
-client = tweepy.Client(bearer_token, consumer_key, consumer_secret, access_token, access_token_secret)
+import os
+from dotenv import load_dotenv, find_dotenv
+
+load_dotenv("D:\\fixedJohnOliver\.env")
+client = tweepy.Client(os.getenv("TWITTERBEARER_TOKEN"), os.getenv("TWITTERCONSUMER_KEY"), os.getenv("TWITTERCOSUMER_SECRET"), os.getenv("TWITTERACCESS_TOKEN"), os.getenv("TWITTERACCESS_TOKEN_SECRET"))
 
 userShams = "ShamsCharania"
 #shams = 
@@ -18,6 +17,8 @@ ShamsID = dataShams.get("id")
 userWoj = "wojespn"
 dataWoj, _, _, _, = client.get_user(username=userWoj)
 WojID = dataWoj.get("id")
+print(WojID)
+'''
 with jsonlines.open('nba.jsonl', mode='a') as writer:
 
     tweetsShams = client.get_users_tweets(id=ShamsID, max_results=5)
@@ -56,8 +57,6 @@ with jsonlines.open('nba.jsonl', mode='a') as writer:
     #json.dump(lst, f)
 '''
 
-    
-'''
 
         
     
