@@ -6,8 +6,11 @@ import os
 
 import discord
 import pickle
+from dotenv import load_dotenv, find_dotenv
 
-token = "ODg0NTc1MzM5MjE1NDc0Njg5.YTae-w.TJUYR3ztVKHzq1lOpS2DgWjEExA"
+load_dotenv("D:\\fixedJohnOliver\.env")
+
+token = os.getenv("DISCORDTOKEN")
 guild = "Steelcrawler's serverdasfasd"
 
 client = discord.Client()
