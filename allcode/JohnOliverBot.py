@@ -11,32 +11,9 @@ from dotenv import load_dotenv, find_dotenv
 load_dotenv("D:\\fixedJohnOliver\.env")
 
 token = os.getenv("DISCORDTOKEN")
-guild = "Steelcrawler's serverdasfasd"
+guild = "Steelcrawler's serverdasfasd"git
 
 client = discord.Client()
-
-def save_object(obj, param):
-    try:
-        with open((param + ".pickle"), "wb") as f:
-            pickle.dump(obj, f)
-    except Exception as ex:
-        print("Error during pickling object (Possibly unsupported):", ex)
-
-def load_object(filename):
-    try:
-        with open(filename, "rb") as f:
-            return pickle.load(f)
-    except Exception as ex:
-        return 0
-
-
-
-creamStocksMarketCap = load_object("marketCap.pickle")
-if (load_object("sharesAvailable.pickle") == 0):
-    creamStockSharesAvailable = 5
-else:
-    creamStockSharesAvailable = load_object("sharesAvailable.pickle")
-creamStockValue = creamStocksMarketCap/creamStockSharesAvailable
 
 @client.event
 async def on_ready():
@@ -60,17 +37,3 @@ async def on_message(message):
     
     if message.author.id == 393251455685099521:
         await message.add_reaction("\U0001F5FA")
-
-@client.event
-async def on_reaction_add(reaction, user):
-    if user != client.user and reaction.emoji.name == "kream":
-        global creamStocksMarketCap 
-        creamStocksMarketCap += 5
-        await reaction.message.channel.send("Current CRM Market Cap is at: $" + str(creamStocksMarketCap))
-        save_object(creamStocksMarketCap, "marketCap")
-
-
-save_object(creamStockSharesAvailable, "sharesAvailable")
-
-
-client.run(token)
