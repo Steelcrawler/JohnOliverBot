@@ -11,7 +11,7 @@ from dotenv import load_dotenv, find_dotenv
 load_dotenv("D:\\fixedJohnOliver\.env")
 
 token = os.getenv("DISCORDTOKEN")
-guild = "Steelcrawler's serverdasfasd"git
+guild = "Steelcrawler's serverdasfasd"
 
 client = discord.Client()
 
