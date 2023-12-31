@@ -18,7 +18,7 @@ async def on_ready():
     print(client.user.id)
 
 nikhil = People('nikhil', {'blu', 'kane', 'nikhil', '<@!690756558698840157>'}, 690756558698840157)
-akash = People('akash', {'akash', 'kash', 'asap', '<@!393251455685099521>'}, 393251455685099521)
+akash = People('akash', {'akash', 'kash', 'asap', 'black', '<@!393251455685099521>'}, 393251455685099521)
 adi = People('adi', {'adi', 'steel', 'steelcrawler', '<@!464402798235222027>'}, 464402798235222027)
 anish = People('anish', {'swishy', 'anish', '<@!573361953649590274>'}, 573361953649590274)
 aneesh = People('aneesh', {'rams', 'bloom', 'aneesh', 'bloomlmao', '<@!577675221352579095>'}, 577675221352579095)
@@ -26,6 +26,11 @@ akhil = People('akhil', {'boo', 'akhil', '<@!672615349786640385>', 'saboo'}, 672
 edric = People('edric', {'edric', 'eddy', '<@!505598260451213363>'}, 505598260451213363)
 satvik = People('satvik', {'cute', 'satvik', '<@!573359190962208768>'}, 573359190962208768)
 vaibhav = People('vaibhav', {'vaibhav', 'vbev', 'bhav', '<@!550822418076270593>'}, 550822418076270593)
+ankith = People('ankith', {'ankith', 'ank', '<@!541319380919910400>'}, 541319380919910400)
+arjun = People('arjun', {'arjun', 'arj', 'jun', 'kumar', 'poseidon', '<@!715291290962755744>'}, 715291290962755744)
+shubhan = People('shubhan', {'shubhan', 'bhan', '<@!724681050395115520>'}, 724681050395115520)
+govind = People('govind', {'govind', '<@!724681050395115520>'}, 724681050395115520)
+arvind = People('arvind', {'arvind', 'pigeon', '<@!423302414414905354>'}, 423302414414905354)
 
 people_set = {nikhil, akash, adi, anish, aneesh, akhil, edric, satvik, vaibhav}
 
@@ -44,7 +49,7 @@ async def on_message(message1):
         counts_people = {people.name: {people.name: 0 for people in people_set} for people in people_set}
         total_counts_people = {people.name: 0 for people in people_set}
         
-        async for message in message1.channel.history(limit=1000):
+        async for message in message1.channel.history(limit=100000):
             message_author = None
             for people in people_set:
                 if people.id == message.author.id:
@@ -59,14 +64,14 @@ async def on_message(message1):
                                 for k, v in counts.items()} 
                         for name, counts in counts_people.items()})
         print(df)
-        df.plot(kind='bar', stacked=True)
-
-        plt.title('Name Mentions by Person')
-        plt.xlabel('Person')
-        plt.ylabel('Percentage of Total Messages')
-        plt.show()
-
-        plt.show()
+        for person in df.index:
+            df.loc[person].plot(kind='bar')
+            
+            plt.title(f'Name Mentions by {person}')
+            plt.xlabel('Name')
+            plt.ylabel('Percentage of Total Messages')
+            
+            plt.show()
             
         # async for message in message1.channel.history(limit=1000000):
         #     if message.author.id == 464402798235222027:
@@ -74,12 +79,6 @@ async def on_message(message1):
         #         for name, name_list in names_dict.items():
         #             if any(n in content_lower for n in name_list):
         #                 counts[name] += 1
-
-
-
-        # messages = [message1 async for message1 in message.channel.history() if message1.content.lower() != '!history']
-        # for message1 in messages:
-        #     print(message1.author)
 
     # if message.author.id in (541319380919910400, 724681050395115520):
     #     await message.add_reaction("\U0001F913") 
