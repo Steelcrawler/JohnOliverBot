@@ -19,20 +19,20 @@ async def on_ready():
 
 nikhil = People('nikhil', {'blu', 'kane', 'nikhil', '<@!690756558698840157>'}, 690756558698840157)
 akash = People('akash', {'akash', 'kash', 'asap', 'black', '<@!393251455685099521>'}, 393251455685099521)
-adi = People('adi', {'adi', 'steel', 'steelcrawler', '<@!464402798235222027>'}, 464402798235222027)
-anish = People('anish', {'swishy', 'anish', '<@!573361953649590274>'}, 573361953649590274)
-aneesh = People('aneesh', {'rams', 'bloom', 'aneesh', 'bloomlmao', '<@!577675221352579095>'}, 577675221352579095)
+adi = People('adi', {'adi', 'di', 'steel', 'steelcrawler', '<@!464402798235222027>'}, 464402798235222027)
+anish = People('anish', {'swishy', 'anish', 'nish', '<@!573361953649590274>'}, 573361953649590274)
+aneesh = People('aneesh', {'rams', 'bloom', 'aneesh', 'bloomlmao', 'neesh', '<@!577675221352579095>'}, 577675221352579095)
 akhil = People('akhil', {'boo', 'akhil', '<@!672615349786640385>', 'saboo'}, 672615349786640385)
-edric = People('edric', {'edric', 'eddy', '<@!505598260451213363>'}, 505598260451213363)
-satvik = People('satvik', {'cute', 'satvik', '<@!573359190962208768>'}, 573359190962208768)
+edric = People('edric', {'edric', 'eddy', 'dric', '<@!505598260451213363>'}, 505598260451213363)
+satvik = People('satvik', {'cute', 'satvik', 'vik', '<@!573359190962208768>'}, 573359190962208768)
 vaibhav = People('vaibhav', {'vaibhav', 'vbev', 'bhav', '<@!550822418076270593>'}, 550822418076270593)
 ankith = People('ankith', {'ankith', 'ank', '<@!541319380919910400>'}, 541319380919910400)
 arjun = People('arjun', {'arjun', 'arj', 'jun', 'kumar', 'poseidon', '<@!715291290962755744>'}, 715291290962755744)
-shubhan = People('shubhan', {'shubhan', 'bhan', '<@!724681050395115520>'}, 724681050395115520)
+shubhan = People('shubhan', {'shubhan', 'bhan', '<@!700528393728557107>'}, 700528393728557107)
 govind = People('govind', {'govind', '<@!724681050395115520>'}, 724681050395115520)
 arvind = People('arvind', {'arvind', 'pigeon', '<@!423302414414905354>'}, 423302414414905354)
 
-people_set = {nikhil, akash, adi, anish, aneesh, akhil, edric, satvik, vaibhav}
+people_set = {nikhil, akash, adi, anish, aneesh, akhil, edric, satvik, vaibhav, ankith, arjun, shubhan, govind, arvind}
 
 df = pd.DataFrame(columns=[people.name for people in people_set])
 
@@ -40,11 +40,7 @@ df = pd.DataFrame(columns=[people.name for people in people_set])
 async def on_message(message1):
     if '!history' == message1.content.lower():
         print('running history')
-        names_dict = {'nikhil': nikhil.nicknames, 'akash': akash.nicknames, 
-                      'anish': anish.nicknames, 'aneesh': aneesh.nicknames, 
-                      'akhil': akhil.nicknames, 'edric': edric.nicknames, 
-                      'satvik': satvik.nicknames, 'adi': adi.nicknames, 
-                      'vaibhav': vaibhav.nicknames}
+        names_dict = {person.name: person.nicknames for person in people_set}
         
         counts_people = {people.name: {people.name: 0 for people in people_set} for people in people_set}
         total_counts_people = {people.name: 0 for people in people_set}
